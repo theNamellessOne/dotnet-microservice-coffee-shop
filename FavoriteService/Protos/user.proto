@@ -1,0 +1,21 @@
+syntax = "proto3";
+option csharp_namespace = "UserService";
+
+service GrpcUser {
+  rpc GetAllUsers (GetAllRequest) returns (UserResponse);
+}
+
+//request definition
+message GetAllRequest {}
+
+//grpc representation of User entity
+message GrpcUserModel {
+  int32 id = 1; // 1 is not a value, but a position of the argument
+  string email = 2;
+  string fullName = 3;
+}
+
+//actual response
+message UserResponse {
+  repeated GrpcUserModel user = 1;
+}

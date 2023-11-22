@@ -1,0 +1,20 @@
+syntax = "proto3";
+option csharp_namespace = "CoffeeService";
+
+service GrpcCoffee {
+  rpc GetAllCoffees (GetAllRequest) returns (CoffeeResponse);
+}
+
+//request definition
+message GetAllRequest {}
+
+//grpc representation of Coffee entity
+message GrpcCoffeeModel {
+  int32 id = 1; // 1 is not a value, but a position of the argument
+  string name = 2;
+}
+
+//actual response
+message CoffeeResponse {
+  repeated GrpcCoffeeModel coffee = 1;
+}
