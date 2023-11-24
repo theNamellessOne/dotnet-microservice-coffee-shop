@@ -74,3 +74,4 @@
 /home/thenamellessone/dev/microservices/gigs/coffe-shop/CoffeeService/bin/Debug/net8.0/Grpc.Net.Client.dll
 /home/thenamellessone/dev/microservices/gigs/coffe-shop/CoffeeService/bin/Debug/net8.0/Grpc.Net.ClientFactory.dll
 /home/thenamellessone/dev/microservices/gigs/coffe-shop/CoffeeService/bin/Debug/net8.0/Grpc.Net.Common.dll
+/home/thenamellessone/dev/microservices/gigs/coffe-shop/CoffeeService/obj/Debug/net8.0/CoffeeService.sourcelink.json

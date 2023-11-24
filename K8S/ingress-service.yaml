@@ -12,7 +12,7 @@ spec:
         paths:
           #all requests to http://coffee-shop.me/api/user
           #will be forwarded to user-cluster-ip-service:80
-          #which in turn will forward them to user-service:8080
+          #which in turn will forward them to user-service:80
           - path: /api/user
             pathType: Prefix
             backend:
@@ -22,7 +22,7 @@ spec:
                   number: 80
           #all requests to http://coffee-shop.me/api/coffee
           #will be forwarded to coffee-cluster-ip-service:80
-          #which in turn will forward them to coffee-service:8080
+          #which in turn will forward them to coffee-service:80
           - path: /api/coffee
             pathType: Prefix
             backend:
@@ -40,3 +40,13 @@ spec:
                 name: favorite-cluster-ip-service
                 port:
                   number: 80
+          #all requests to http://coffee-shop.me/api/order
+          #will be forwarded to favorite-cluster-ip-service:80
+          #which in turn will forward them to order-service:8080
+          - path: /api/order
+            pathType: Prefix
+            backend:
+              service:
+                name: order-cluster-ip-service
+                port:
+                  number: 80          

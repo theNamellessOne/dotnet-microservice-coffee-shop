@@ -5,6 +5,7 @@ using FavoriteService.Models;
 
 namespace FavoriteService.Profiles;
 
+//defines how AutoMapper will map objects
 public class CoffeeProfile : Profile
 {
     public CoffeeProfile()

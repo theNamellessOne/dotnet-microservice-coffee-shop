@@ -5,6 +5,7 @@ using UserService;
 
 namespace FavoriteService.Profiles;
 
+//defines how AutoMapper will map objects
 public class UserProfile : Profile
 {
     public UserProfile()

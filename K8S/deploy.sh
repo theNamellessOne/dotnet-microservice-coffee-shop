@@ -30,6 +30,10 @@ cd ../
 
 
 #order-service
+cd order-service/ || exit
+kubectl apply -f order-depl.yaml
+kubectl apply -f order-np-service.yaml
+cd ../
 
 #API gateway
 kubectl apply -f ingress-service.yaml

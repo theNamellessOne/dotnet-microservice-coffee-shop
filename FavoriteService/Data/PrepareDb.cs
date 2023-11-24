@@ -1,5 +1,6 @@
 using FavoriteService.Data.Repositories;
 using FavoriteService.Models;
+using FavoriteService.SyncDataServices.Grpc.Coffee;
 using FavoriteService.SyncDataServices.Grpc.User;
 using Microsoft.EntityFrameworkCore;
 
@@ -32,18 +33,40 @@ public static class PrepareDb
 
     private static void Pull(IServiceScope serviceScope)
     {
-        var userRepository = serviceScope.ServiceProvider.GetService<IUserRepository>();
+        PullUsers(serviceScope);
+        PullCoffees(serviceScope);
+    }
+
+    private static void PullCoffees(IServiceScope serviceScope)
+    {
+        var coffeeRepository = serviceScope.ServiceProvider.GetService<ICoffeeRepository>()!;
+        var coffeeGrpcClient = serviceScope.ServiceProvider.GetService<ICoffeeDataClient>();
+        var coffees = coffeeGrpcClient!.ReturnAllCoffees();
+
+        foreach (var coffee in coffees!)
+        {
+            if (coffeeRepository.ExternalCoffeeExists(coffee.ExternalId)) continue;
+
+            coffeeRepository.CreateCoffee(coffee);
+        }
+
+        coffeeRepository.SaveChanges();
+    }
+
+    private static void PullUsers(IServiceScope serviceScope)
+    {
+        var userRepository = serviceScope.ServiceProvider.GetService<IUserRepository>()!;
         var userGrpcClient = serviceScope.ServiceProvider.GetService<IUserDataClient>();
         var users = userGrpcClient!.ReturnAllUsers();
 
         foreach (var user in users!)
         {
-            if (userRepository!.ExternalUserExists(user.ExternalId)) continue;
+            if (userRepository.ExternalUserExists(user.ExternalId)) continue;
 
             userRepository.CreateUser(user);
         }
 
-        userRepository!.SaveChanges();
+        userRepository.SaveChanges();
     }
 
     private static void Seed(AppDbContext dbContext)

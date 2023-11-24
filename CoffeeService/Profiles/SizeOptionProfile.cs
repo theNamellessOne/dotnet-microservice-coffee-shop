@@ -4,6 +4,7 @@ using CoffeeService.Models;
 
 namespace CoffeeService.Profiles;
 
+//defines how AutoMapper will map objects
 public class SizeOptionProfile : Profile
 {
     public SizeOptionProfile()

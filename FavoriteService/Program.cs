@@ -1,3 +1,4 @@
+using FavoriteService.AsyncDataServices;
 using FavoriteService.Data;
 using FavoriteService.Data.Repositories;
 using FavoriteService.EventProcessing;

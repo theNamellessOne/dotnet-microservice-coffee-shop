@@ -5,6 +5,7 @@ using RabbitMQ.Client;
 
 namespace CoffeeService.AsyncDataServices;
 
+//RabbitMQ client
 public class MessageBusClient : IMessageBusClient
 {
     private readonly IModel? _channel;
@@ -18,6 +19,7 @@ public class MessageBusClient : IMessageBusClient
             Port = int.Parse(configuration["RabbitMQPort"]!)
         };
 
+        //try to connect to RabbitMQ message bus
         try
         {
             _connection = factory.CreateConnection();
@@ -43,6 +45,8 @@ public class MessageBusClient : IMessageBusClient
             Console.WriteLine("---> RabbitMQ connection is closed. Cannot send message");
     }
 
+
+    //publish msg to MessageBus
     private void SendMessage(string msg)
     {
         var body = Encoding.UTF8.GetBytes(msg);

@@ -5,6 +5,7 @@ using UserService;
 
 namespace CoffeeService.Profiles;
 
+//defines how AutoMapper will map objects
 public class CoffeeProfile : Profile
 {
     public CoffeeProfile()

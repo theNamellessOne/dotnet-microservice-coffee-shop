@@ -11,7 +11,6 @@ public class EventProcessor(IServiceScopeFactory scopeFactory, IMapper mapper) :
     //since event processor is a singleton service
     //it is impossible to inject scoped repositories directly
     //so it is necessary to create them using scope factory
-
     public void ProcessEvent(string msg)
     {
         Console.WriteLine("---> Processing Event");

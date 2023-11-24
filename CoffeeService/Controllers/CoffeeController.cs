@@ -50,7 +50,7 @@ public class CoffeeController(
         coffeeRepository.RemoveCoffee(coffeeModel);
         coffeeRepository.SaveChanges();
 
-        //publish newly created coffee to message bus for other services to consume
+        //publish coffee deletion event to message bus for other services to react
         var coffeePublishDto = mapper.Map<CoffeePublishDto>(mapper.Map<CoffeeReadDto>(coffeeModel));
         coffeePublishDto.Event = "Coffee_Removed";
         messageBusClient.PublishCoffee(coffeePublishDto);

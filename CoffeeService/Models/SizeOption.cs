@@ -10,8 +10,6 @@ public class SizeOption
 
     [Required] public double Price { get; set; }
 
-    [Required] public int StockAmount { get; set; }
-
     [Required] public int CoffeeId { get; set; }
 
     public Coffee? Coffee { get; set; }

@@ -3,6 +3,9 @@ using FavoriteService.EventProcessing;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
+namespace FavoriteService.AsyncDataServices;
+
+//RabbitMQ client
 public class MessageBusSubscriber : BackgroundService
 {
     private readonly IModel? _channel;
@@ -20,6 +23,7 @@ public class MessageBusSubscriber : BackgroundService
             Port = int.Parse(configuration["RabbitMQPort"]!)
         };
 
+        //try to connect to RabbitMQ message bus
         try
         {
             _connection = factory.CreateConnection();
@@ -39,6 +43,7 @@ public class MessageBusSubscriber : BackgroundService
         }
     }
 
+    //receive events from message bus
     protected override Task ExecuteAsync(CancellationToken stoppingToken)
     {
         stoppingToken.ThrowIfCancellationRequested();

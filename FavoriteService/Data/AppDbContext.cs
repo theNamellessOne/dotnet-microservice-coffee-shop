@@ -16,10 +16,10 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        //creation of manyToOne relation
-        //Coffee has many SizeOption
-        //SizeOption has one Coffee 
-        //SizeOption has foreign key CoffeeId
+        //creation of manyToMany relation
+        //User has many FavoriteCoffees
+        //Coffee is Favored By many User
+        //Favorite is a table representation of manyToMany with ids
         modelBuilder.Entity<User>()
             .HasMany(e => e.FavoriteCoffees)
             .WithMany(e => e.FavoredBy)
